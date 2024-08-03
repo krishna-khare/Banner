@@ -49,11 +49,11 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
                 <p>{description}</p>
                 <button className="cta-button" onClick={() => alert(cta)}>{cta}</button>
                 <button className="download-button hide-during-download" onClick={handleDownload}>
-                    <img src="/images/download btn.png" alt="Download" className="download-icon" />
+                    <img src="./images/download btn.png" alt="Download" className="download-icon" />
                 </button>
             </div>
             <button onClick={onEdit} className="edit-button hide-during-download">
-                <img src="/images/edit-pen-icon.png" alt="Edit" className="edit-icon" />
+                <img src="./images/edit-pen-icon.png" alt="Edit" className="edit-icon" />
             </button>
         </div>
     );
