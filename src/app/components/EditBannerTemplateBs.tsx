@@ -1,62 +1,47 @@
+// src/app/components/EditBannerTemplateBs.tsx
 "use client";
 
-import React from 'react';
-import html2canvas from 'html2canvas';
+import React, { useState } from 'react';
 
-interface BannerImageCompProps {
+interface EditBannerTemplateBsProps {
     title: string;
     description: string;
     cta: string;
     image: string;
     background: string;
-    onEdit: () => void;
+    onSave: (newBanner: any) => void;
+    onClose: () => void;
 }
 
-const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, cta, image, background, onEdit }) => {
-    const handleDownload = async () => {
-        const element = document.getElementById(`banner-${title}`);
-        if (element) {
-            // Hide edit and download buttons before capture
-            const icons = element.querySelectorAll('.hide-during-download');
-            icons.forEach((icon) => {
-                if (icon instanceof HTMLElement) {
-                    icon.style.display = 'none';
-                }
-            });
+const EditBannerTemplateBs: React.FC<EditBannerTemplateBsProps> = ({ title, description, cta, image, background, onSave, onClose }) => {
+    const [newTitle, setNewTitle] = useState(title);
+    const [newDescription, setNewDescription] = useState(description);
+    const [newCta, setNewCta] = useState(cta);
+    const [newImage, setNewImage] = useState(image);
+    const [newBackground, setNewBackground] = useState(background);
 
-            // Capture the image
-            const canvas = await html2canvas(element);
-            const dataURL = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.href = dataURL;
-            link.download = `${title}.png`;
-            link.click();
-
-            // Restore edit and download buttons after capture
-            icons.forEach((icon) => {
-                if (icon instanceof HTMLElement) {
-                    icon.style.display = '';
-                }
-            });
-        }
+    const handleSubmit = () => {
+        onSave({
+            title: newTitle,
+            description: newDescription,
+            cta: newCta,
+            image: newImage,
+            background: newBackground,
+        });
+        onClose();
     };
 
     return (
-        <div id={`banner-${title}`} style={{ background }} className="banner">
-            <img src={image} alt={title} className="banner-image" />
-            <div className="banner-content">
-                <h2>{title}</h2>
-                <p>{description}</p>
-                <button className="cta-button" onClick={() => alert(cta)}>{cta}</button>
-                <button className="download-button hide-during-download" onClick={handleDownload}>
-                    <img src="/images/download btn.png" alt="Download" className="download-icon" />
-                </button>
-            </div>
-            <button onClick={onEdit} className="edit-button hide-during-download">
-                <img src="/images/edit-pen-icon.png" alt="Edit" className="edit-icon" />
-            </button>
+        <div className="edit-banner-template-bs">
+            <input value={newTitle} onChange={(e) => setNewTitle(e.target.value)} />
+            <input value={newDescription} onChange={(e) => setNewDescription(e.target.value)} />
+            <input value={newCta} onChange={(e) => setNewCta(e.target.value)} />
+            <input value={newImage} onChange={(e) => setNewImage(e.target.value)} />
+            <input value={newBackground} onChange={(e) => setNewBackground(e.target.value)} />
+            <button onClick={handleSubmit}>Save</button>
+            <button onClick={onClose}>Cancel</button>
         </div>
     );
 };
 
-export default BannerImageComp;
+export default EditBannerTemplateBs;
