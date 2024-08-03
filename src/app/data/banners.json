@@ -4,7 +4,7 @@
       "title": "KASHKAN",
       "description": "The Flavours of India",
       "cta": "Order Now",
-      "image": "/images/restaarant.jpg",
+      "image": "/images/image1.jpg",
       "background": "#f1f1f1"
     },
     {
@@ -12,7 +12,7 @@
       "title": "Doctors of The Tech",
       "description": "Fast and Genuine Repair",
       "cta": "Book Now",
-      "image": "/images/download.png",
+      "image": "/images/image2.png",
       "background": "#e1e1e1"
     }
   ]
