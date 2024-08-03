@@ -12,7 +12,7 @@
       "title": "Doctors of The Tech",
       "description": "Fast and Genuine Repair",
       "cta": "Book Now",
-      "image": "/images/image2.png",
+      "image": "./images/image2.png",
       "background": "#e1e1e1"
     }
   ]
