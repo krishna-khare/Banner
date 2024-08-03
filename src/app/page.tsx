@@ -1,3 +1,4 @@
+// src/app/page.tsx
 "use client";
 
 import { useState } from 'react';
@@ -22,7 +23,7 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div style={{ backgroundColor: '#f0f0f0', padding: '20px' }}>
             {banners.map((banner, index) => (
                 <BannerImageComp
                     key={index}
@@ -42,6 +43,7 @@ const Home = () => {
                     image={banners[editingBanner].image}
                     background={banners[editingBanner].background}
                     onSave={handleSave}
+                    onClose={() => setEditingBanner(null)}
                 />
             )}
         </div>
