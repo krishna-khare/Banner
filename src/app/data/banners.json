@@ -1,0 +1,19 @@
+[
+    {
+      "id": 1,
+      "title": "KASHKAN",
+      "description": "The Flavours of India",
+      "cta": "Order Now",
+      "image": "/images/restaarant.jpg",
+      "background": "#f1f1f1"
+    },
+    {
+      "id": 2,
+      "title": "Doctors of The Tech",
+      "description": "Fast and Genuine Repair",
+      "cta": "Book Now",
+      "image": "/images/download.png",
+      "background": "#e1e1e1"
+    }
+  ]
+  
