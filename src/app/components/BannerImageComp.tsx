@@ -16,12 +16,16 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
     const handleDownload = async () => {
         const element = document.getElementById(`banner-${title}`);
         if (element) {
+            const icons = element.querySelectorAll('.hide-during-download');
+            icons.forEach((icon) => (icon.style.display = 'none'));
             const canvas = await html2canvas(element);
             const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');
             link.href = dataURL;
             link.download = `${title}.png`;
             link.click();
+
+            icons.forEach((icon) => (icon.style.display = ''));
         }
     };
 
@@ -32,11 +36,11 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
                 <h2>{title}</h2>
                 <p>{description}</p>
                 <button className="cta-button" onClick={() => alert(cta)}>{cta}</button>
-                <button className="download-button" onClick={handleDownload}>
-                    <img src="./images/download btn.png" alt="Download" className='download-icon' />
+                <button className="download-button hide-during-download" onClick={handleDownload}>
+                    <img src="./images/download btn.png" alt="Download" className="download-icon" />
                 </button>
             </div>
-            <button onClick={onEdit} className="edit-button">
+            <button onClick={onEdit} className="edit-button hide-during-download">
                 <img src="./images/edit-pen-icon.png" alt="Edit" className="edit-icon" />
             </button>
         </div>
