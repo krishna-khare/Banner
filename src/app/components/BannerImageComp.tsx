@@ -1,4 +1,3 @@
-// src/app/components/BannerImageComp.tsx
 "use client";
 
 import React from 'react';
