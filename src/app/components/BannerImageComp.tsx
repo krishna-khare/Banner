@@ -16,7 +16,6 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
     const handleDownload = async () => {
         const element = document.getElementById(`banner-${title}`);
         if (element) {
-            // Hide edit and download buttons before capture
             const icons = element.querySelectorAll('.hide-during-download');
             icons.forEach((icon) => {
                 if (icon instanceof HTMLElement) {
@@ -24,7 +23,6 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
                 }
             });
 
-            // Capture the image
             const canvas = await html2canvas(element);
             const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');
@@ -32,7 +30,6 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
             link.download = `${title}.png`;
             link.click();
 
-            // Restore edit and download buttons after capture
             icons.forEach((icon) => {
                 if (icon instanceof HTMLElement) {
                     icon.style.display = '';
