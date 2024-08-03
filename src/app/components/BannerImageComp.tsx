@@ -16,8 +16,15 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
     const handleDownload = async () => {
         const element = document.getElementById(`banner-${title}`);
         if (element) {
+            // Hide edit and download buttons before capture
             const icons = element.querySelectorAll('.hide-during-download');
-            icons.forEach((icon) => (icon.style.display = 'none'));
+            icons.forEach((icon) => {
+                if (icon instanceof HTMLElement) {
+                    icon.style.display = 'none';
+                }
+            });
+
+            // Capture the image
             const canvas = await html2canvas(element);
             const dataURL = canvas.toDataURL('image/png');
             const link = document.createElement('a');
@@ -25,7 +32,12 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
             link.download = `${title}.png`;
             link.click();
 
-            icons.forEach((icon) => (icon.style.display = ''));
+            // Restore edit and download buttons after capture
+            icons.forEach((icon) => {
+                if (icon instanceof HTMLElement) {
+                    icon.style.display = '';
+                }
+            });
         }
     };
 
@@ -37,11 +49,11 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
                 <p>{description}</p>
                 <button className="cta-button" onClick={() => alert(cta)}>{cta}</button>
                 <button className="download-button hide-during-download" onClick={handleDownload}>
-                    <img src="./images/download btn.png" alt="Download" className="download-icon" />
+                    <img src="/images/download btn.png" alt="Download" className="download-icon" />
                 </button>
             </div>
             <button onClick={onEdit} className="edit-button hide-during-download">
-                <img src="./images/edit-pen-icon.png" alt="Edit" className="edit-icon" />
+                <img src="/images/edit-pen-icon.png" alt="Edit" className="edit-icon" />
             </button>
         </div>
     );
