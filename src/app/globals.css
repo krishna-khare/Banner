@@ -90,8 +90,11 @@ background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
 }
 
 .hide-during-download {
-    display: none;
+    display: inline-block; 
 }
+
+.show { display: block; }
+.hide { display: none; }
 
 .edit-banner-bottom-sheet {
   position: fixed;
