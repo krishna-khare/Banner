@@ -33,7 +33,7 @@ const BannerImageComp: React.FC<BannerImageCompProps> = ({ title, description, c
                 <p>{description}</p>
                 <button className="cta-button" onClick={() => alert(cta)}>{cta}</button>
                 <button className="download-button" onClick={handleDownload}>
-                    <img src="public/images/download btn.png" alt="Download" className='download-icon' />
+                    <img src="public/images/download btn.PNG" alt="Download" className='download-icon' />
                 </button>
             </div>
             <button onClick={onEdit} className="edit-button">
